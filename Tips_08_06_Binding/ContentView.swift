@@ -10,7 +10,20 @@ import SwiftUI
 import Combine
 
 class Lights{
-    var isOn:Bool = false
+    var isOn:Bool = false{
+        didSet{
+            if isOn{
+                self.timedShutOff()
+            }
+        }
+    }
+    
+    func timedShutOff(){
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
+                self.isOn = false
+        }
+    }
+    
 }
 
 
